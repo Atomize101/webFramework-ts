@@ -2,19 +2,15 @@ import { User } from './models/User';
 
 const user = new User({ name: 'myname', age: 20 });
 
-user.on('change', () => {});
+user.on('change', () => {
+	console.log('Change #1');
+});
+user.on('change', () => {
+	console.log('Change #2');
+});
+user.on('save', () => {
+	console.log('Save Triggered');
+});
 
-console.log(user);
-
-/* 
-console log returns
-User {data: {…}, events: {…}}
-data:
-age: 20
-name: "myname"
-__proto__: Object
-events:
-change: [ƒ]
-__proto__: Object
-__proto__: Object
-*/
+user.trigger('change');
+user.trigger('save');
